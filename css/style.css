@@ -549,6 +549,7 @@ body::after {
   border-radius: 0.625rem;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 2;
 }
 
 .phones-header__list li:not(:last-child) {
@@ -639,6 +640,10 @@ body::after {
           justify-content: space-between;
 }
 
+.menu-catalog__items {
+  position: relative;
+}
+
 .menu-catalog__link {
   min-height: 4.375rem;
   padding: 0rem 0.625rem;
@@ -658,59 +663,32 @@ body::after {
   transition: color 0.3s ease 0s;
 }
 
-.menu-catalog__link::after {
-  content: "";
-  opacity: 0;
-  visibility: hidden;
+.menu-catalog__link._sub-menu-active {
+  color: #e8aa31;
+}
+
+.menu-catalog__link._sub-menu-active .sub-menu-catalog__column {
+  top: 80px;
+}
+
+.sub-menu-catalog__column {
   position: absolute;
-  bottom: 0;
-  left: 0.625rem;
-  height: 1px;
-  background-color: #e8aa31;
-  width: calc(100% - 1.25rem);
+  width: 17.5rem;
+  height: 100%;
+  top: 80px;
+  left: -30px;
+  visibility: hidden;
+  display: block;
+  opacity: 0;
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
 
-.menu-catalog__link._sub-menu-active {
-  color: #e8aa31;
-}
-
-.menu-catalog__link._sub-menu-active::after {
-  opacity: 1;
+.sub-menu-catalog__column._sub-menu-open {
   visibility: visible;
-}
-
-.menu-catalog__sub-menu {
-  width: 100%;
-  left: 0;
-  top: 100%;
-  background-color: #141414;
-}
-
-.sub-menu-catalog__block {
-  padding: 0rem 0.625rem 1.875rem 0rem;
-  display: none;
-}
-
-.sub-menu-catalog__block._sub-menu-open {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.sub-menu-catalog__column {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1 20rem;
-          flex: 0 1 20rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  opacity: 1;
+  top: 70px;
 }
 
 .sub-menu-catalog__category {
@@ -734,9 +712,8 @@ body::after {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 1.25rem;
-  padding: 1.875rem 0.9375rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.9375rem 1.875rem;
+  background-color: #141414;
 }
 
 .sub-menu-catalog__link {
@@ -836,11 +813,6 @@ body::after {
 
   .menu-catalog__link:hover {
     color: #e8aa31;
-  }
-
-  .menu-catalog__link:hover::after {
-    opacity: 1;
-    visibility: visible;
   }
 
   .sub-menu-catalog__category:hover {
